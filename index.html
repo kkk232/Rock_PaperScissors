@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function getComputerChoice(){
+            let number = Math.round(Math.random() * 10);
+            let word;
+            return (number >= 0 && number <= 3) ? word = "rock": (number > 3 && number <= 6) ? word = "paper": (number > 6) ? word = "scissors": word = "mistake";
+        }
+        function getHumanChoice() {
+            let checkUser = true;
+            while (checkUser = true) {
+                let number = prompt("Write what you choose (Rock, Paper or Scissors)!");
+                number = number.toLowerCase();
+                if (number == "rock" || number == "scissors" || number == "paper"){
+                    return number
+                }
+                else {
+                    console.log("You make mistake, write again!!!");
+                }
+            }
+        }
+       
+        let humanScore = 0;
+        let computerScore = 0;
+
+        function playRound(computer, human) {
+            let result = "";
+            switch (human) {
+                case "rock":
+                    (computer == "rock") ? result = "It's a draw!!!": (computer == "scissors") ? result = "You win!!!": (computer == "paper") ? result = "You lose!!!": result = "mistake";
+                    break;
+                case "paper":
+                    (computer == "rock") ? result = "You win!!!": (computer == "scissors") ? result = "You lose!!!": (computer == "paper") ? result = "It's a draw!!!": result = "mistake";
+                    break;
+                case "scissors":
+                    (computer == "rock") ? result = "You lose!!!": (computer == "scissors") ? result = "It's a draw!!!": (computer == "paper") ? result = "You win!!!": result = "mistake";
+                    break;
+                default:
+            }
+            switch (result){
+                case "You win!!!":
+                    humanScore += 1;
+                    console.log(result);
+                    break;
+                case "You lose!!!":
+                    computerScore += 1;
+                    console.log(result);
+                    break;
+                case "It's a draw!!!":
+                    console.log(result);
+                    break;
+                default:
+            }
+        }
+        function playGame(){
+            let game = 0;
+            while (game != 5){
+                playRound(getComputerChoice(), getHumanChoice());
+                game += 1;
+            }
+            if (humanScore > computerScore){
+                console.log("Congratulations, you win against evil machine!!!");
+                console.log("Your score = " + humanScore);
+                console.log("Computer score = " + computerScore);
+            }
+            else if (computerScore > humanScore){
+                console.log("Sadly you lose. Machine win!!!");
+                console.log("Your score = " + humanScore);
+                console.log("Computer score = " + computerScore);
+            }
+            else {
+                console.log("It's a draw!!!");
+                console.log("Your score = " + humanScore);
+                console.log("Computer score = " + computerScore);
+            }
+        }
+        let game = true;
+        while (game == true){
+            playGame();
+            check = true;
+            while (check == true){
+                let next = prompt("Do you want to play again? If yes tipe yes, else type no.");
+                if (next.toLowerCase() == "yes"){
+                    console.clear();
+                    check = false;
+                } else if (next.toLowerCase() == "no"){
+                    game = false;
+                    check = false;
+                } else console.log("You make mistake, wtite again!");
+
+            }
+            humanScore = 0;
+            computerScore = 0;
+        }
+        
+    </script>
+</body>
+</html>
