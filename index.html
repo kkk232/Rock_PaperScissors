@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <button id = "btnRock">Rock</button>
+    <button id = "btnPaper">Paper</button>
+    <button id = "btnScissors">Scissors</button>
+    <div id="resulti">Round result</div>
     <script>
         
         function getComputerChoice(){
@@ -13,6 +17,7 @@
             let word;
             return (number >= 0 && number <= 3) ? word = "rock": (number > 3 && number <= 6) ? word = "paper": (number > 6) ? word = "scissors": word = "mistake";
         }
+        /*
         function getHumanChoice() {
             let checkUser = true;
             while (checkUser = true) {
@@ -26,10 +31,7 @@
                 }
             }
         }
-       
-        let humanScore = 0;
-        let computerScore = 0;
-
+        */
         function playRound(computer, human) {
             let result = "";
             switch (human) {
@@ -47,30 +49,33 @@
             switch (result){
                 case "You win!!!":
                     humanScore += 1;
-                    console.log(result);
+                    content.textContent = `You win!!! 
+                    Result now: youre score = ${humanScore}, computer score = ${computerScore}`;
                     break;
                 case "You lose!!!":
                     computerScore += 1;
-                    console.log(result);
+                    content.textContent = `You lose!!!
+                    Result now: youre score = ${humanScore}, computer score = ${computerScore}`;
                     break;
                 case "It's a draw!!!":
-                    console.log(result);
+                    content.textContent = `It's a draw!!!  
+                    Result now: youre score = ${humanScore}, computer score = ${computerScore}`;
                     break;
                 default:
             }
+            container.appendChild(content);
         }
+        /*
         function playGame(){
-            let game = 0;
-            while (game != 5){
+            while (computerScore != 5 || humanScore != 5){
                 playRound(getComputerChoice(), getHumanChoice());
-                game += 1;
             }
-            if (humanScore > computerScore){
+            if (humanScore == 5){
                 console.log("Congratulations, you win against evil machine!!!");
                 console.log("Your score = " + humanScore);
                 console.log("Computer score = " + computerScore);
             }
-            else if (computerScore > humanScore){
+            else if (computerScore == 5){
                 console.log("Sadly you lose. Machine win!!!");
                 console.log("Your score = " + humanScore);
                 console.log("Computer score = " + computerScore);
@@ -81,8 +86,8 @@
                 console.log("Computer score = " + computerScore);
             }
         }
-        let game = true;
-        while (game == true){
+        */
+        /* while (game == true){
             playGame();
             check = true;
             while (check == true){
@@ -99,7 +104,61 @@
             humanScore = 0;
             computerScore = 0;
         }
-        
+        */
+              
+        let humanScore = 0;
+        let computerScore = 0;
+       
+        const container = document.querySelector("#resulti");
+        const content = document.createElement("div");
+        content.classList.add("content");
+        const btnRock = document.querySelector("#btnRock");
+        btnRock.onclick = () => {
+            human = "rock";
+            if (computerScore != 5 && humanScore != 5){
+                playRound(getComputerChoice(), human);
+            }
+            else if (computerScore == 5){
+                content.textContent = `Computer win!!! Your score = ${humanScore}, computer score = ${computerScore}.`;
+                container.appendChild(content);
+            } 
+            else {
+                content.textContent = `You win, congratulations!!! Your score = ${humanScore}, computer score = ${computerScore}.`;
+                container.appendChild(content);
+            }
+        }
+        const btnPaper = document.querySelector("#btnPaper");
+        btnPaper.onclick = () => {
+            human = "paper";
+            if (computerScore != 5 && humanScore != 5){
+                playRound(getComputerChoice(), human);
+            }
+            else if (computerScore == 5){
+                content.textContent = `Computer win!!! Your score = ${humanScore}, computer score = ${computerScore}.`;
+                container.appendChild(content);
+            } 
+            else {
+                content.textContent = `You win, congratulations!!! Your score = ${humanScore}, computer score = ${computerScore}.`;
+                container.appendChild(content);
+            }
+        }
+        const btnScissors = document.querySelector("#btnScissors");
+        btnScissors.onclick = () => {
+            human = "Scissors";
+            if (computerScore != 5 && humanScore != 5){
+                playRound(getComputerChoice(), human);
+            }
+            else if (computerScore == 5){
+                content.textContent = `Computer win!!! Your score = ${humanScore}, computer score = ${computerScore}.`;
+                container.appendChild(content);
+            } 
+            else {
+                content.textContent = `You win, congratulations!!! Your score = ${humanScore}, computer score = ${computerScore}.`;
+                container.appendChild(content);
+            }
+        }
+        /*(computerScore == 5) ? content.textContent = "Computer Win!!!": (humanScore == 5) ? content.textContent = "You win, congratulations!!!": content.textContent = "Draw!!!";
+        container.appendChild(content);*/
     </script>
 </body>
 </html>
